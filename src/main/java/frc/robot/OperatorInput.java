@@ -139,10 +139,10 @@ public class OperatorInput extends SubsystemBase {
     public double getTurn() {
 
         if (driveModeChooser.getSelected() == DriveMode.SINGLE_STICK_LEFT) {
-            return driverController.getLeftX();
+            return -driverController.getLeftX();
         }
 
-        return driverController.getRightX();
+        return -driverController.getRightX();
     }
 
     /*
@@ -173,8 +173,9 @@ public class OperatorInput extends SubsystemBase {
         return -driverController.getLeftTriggerAxis();
     }
 
-    public boolean kickerOn() {
-        return driverController.getRightTriggerAxis() > .3;
+    public double getCBSpeed() {
+        return -driverController.getRightTriggerAxis() * 0.1;
     }
+
 
 }

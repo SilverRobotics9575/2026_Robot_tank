@@ -24,7 +24,6 @@ public class IntakeCommand extends LoggingCommand {
     public void execute() {
 
         shooterSubsystem.setShooterSpeed(-.4);
-        shooterSubsystem.setKickerSpeed(-.8);
     }
 
     @Override
