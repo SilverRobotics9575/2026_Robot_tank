@@ -25,14 +25,13 @@ public class DefaultShooterCommand extends LoggingCommand {
     public void execute() {
 
         // Set the shooter speed based on the left trigger
-        shooterSubsystem.setShooterSpeed(operatorInput.getShooterSpeed());
-
-        if (operatorInput.kickerOn()) {
-            shooterSubsystem.setKickerSpeed(1);
+        if (operatorInput.getCBSpeedReverse()) {
+            shooterSubsystem.setCBSpeed(-operatorInput.getCBSpeed());
         }
         else {
-            shooterSubsystem.setKickerSpeed(0);
+            shooterSubsystem.setCBSpeed(operatorInput.getCBSpeed());
         }
+        shooterSubsystem.setShooterSpeed(operatorInput.getShooterSpeed());
     }
 
     @Override

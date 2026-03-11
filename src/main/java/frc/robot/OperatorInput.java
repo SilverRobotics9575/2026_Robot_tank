@@ -22,6 +22,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class OperatorInput extends SubsystemBase {
 
     private final GameController driverController;
+    private final GameController shooterController;
 
     // Auto Setup Choosers
     SendableChooser<AutoPattern> autoPatternChooser = new SendableChooser<>();
@@ -34,8 +35,11 @@ public class OperatorInput extends SubsystemBase {
      */
     public OperatorInput() {
 
-        driverController = new GameController(OperatorInputConstants.DRIVER_CONTROLLER_PORT,
+        driverController  = new GameController(OperatorInputConstants.DRIVER_CONTROLLER_PORT,
             OperatorInputConstants.DRIVER_CONTROLLER_DEADBAND);
+
+        shooterController = new GameController(OperatorInputConstants.SHOOTER_CONTROLLER_PORT,
+            OperatorInputConstants.SHOOTER_CONTROLLER_DEADBAND);
 
         // Initialize the dashboard selectors
         autoPatternChooser.setDefaultOption("Do Nothing", AutoPattern.DO_NOTHING);
@@ -139,10 +143,10 @@ public class OperatorInput extends SubsystemBase {
     public double getTurn() {
 
         if (driveModeChooser.getSelected() == DriveMode.SINGLE_STICK_LEFT) {
-            return driverController.getLeftX();
+            return -driverController.getLeftX();
         }
 
-        return driverController.getRightX();
+        return -driverController.getRightX();
     }
 
     /*
@@ -159,22 +163,38 @@ public class OperatorInput extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putString("Driver Controller", driverController.toString());
+        SmartDashboard.putString("Shooter Controller", shooterController.toString());
     }
 
     public boolean isResetEncoders() {
-        return driverController.getBackButton();
+        return driverController.getBackButton() || shooterController.getBackButton();
     }
 
     public boolean stopShooter() {
-        return driverController.getXButton();
+        return shooterController.getXButton();
     }
 
     public double getShooterSpeed() {
-        return -driverController.getLeftTriggerAxis();
+        return -shooterController.getRightTriggerAxis();
     }
 
-    public boolean kickerOn() {
-        return driverController.getRightTriggerAxis() > .3;
+    public double getCBSpeed() {
+        return -shooterController.getLeftTriggerAxis() * 0.1;
+    }
+
+    public boolean getCBSpeedReverse() {
+        return shooterController.getLeftBumperButton();
     }
 
 }
+
+
+// shooter toggle > R bumber
+// shooter control > R trigger
+// shooter reverse (hold) > x
+
+// converyor toggle > L bumber
+// converyor control > L trigger
+// converyor reverse (hold) > y
+
+// preset short

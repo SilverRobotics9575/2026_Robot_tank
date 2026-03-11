@@ -68,8 +68,8 @@ public class AutoCommand extends SequentialCommandGroup {
             // waiting for auto to start.
             driveSubsystem.setGyroHeading(0);
 
-            // Drive forward 1m at .2 speed
-            addCommands(new DriveOnHeadingCommand(0, .2, 100, driveSubsystem));
+            // Drive forward 1m at .2 spe ed
+            addCommands(new DriveOnHeadingCommand(0, .1, 100, driveSubsystem));
             return;
 
         case PATH_TEST_THING:
@@ -85,16 +85,16 @@ public class AutoCommand extends SequentialCommandGroup {
             driveSubsystem.setGyroHeading(0);
 
             // Drive out and then one box
-            addCommands(new DriveOnHeadingCommand(0, .4, 200, false, driveSubsystem));
-            addCommands(new DriveOnHeadingCommand(270, .4, 100, false, driveSubsystem));
-            addCommands(new DriveOnHeadingCommand(180, .4, 100, false, driveSubsystem));
-            addCommands(new DriveOnHeadingCommand(90, .4, 100, false, driveSubsystem));
-            addCommands(new DriveOnHeadingCommand(0, .4, 100, driveSubsystem));
+            addCommands(new DriveOnHeadingCommand(0, .1, 200, false, driveSubsystem));
+            addCommands(new DriveOnHeadingCommand(270, .1, 100, false, driveSubsystem));
+            addCommands(new DriveOnHeadingCommand(180, .1, 100, false, driveSubsystem));
+            addCommands(new DriveOnHeadingCommand(90, .1, 100, false, driveSubsystem));
+            addCommands(new DriveOnHeadingCommand(0, .1, 100, driveSubsystem));
             return;
 
         case DRIVE_FORWARD_AND_OUTAKE_L1:
 
-            addCommands(new DriveOnHeadingCommand(0, .2, 350, true, driveSubsystem));
+            addCommands(new DriveOnHeadingCommand(0, .1, 350, true, driveSubsystem));
             addCommands(new WaitCommand(2.5));
             addCommands(new WaitCommand(1));
 

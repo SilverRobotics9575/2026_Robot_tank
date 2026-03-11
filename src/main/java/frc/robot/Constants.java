@@ -20,8 +20,10 @@ public final class Constants {
 
     public static final class OperatorInputConstants {
 
-        public static final int    DRIVER_CONTROLLER_PORT     = 0;
-        public static final double DRIVER_CONTROLLER_DEADBAND = .2;
+        public static final int    DRIVER_CONTROLLER_PORT      = 0;
+        public static final double DRIVER_CONTROLLER_DEADBAND  = .2;
+        public static final int    SHOOTER_CONTROLLER_PORT     = 1;
+        public static final double SHOOTER_CONTROLLER_DEADBAND = .2;
     }
 
     public static final class AutoConstants {
@@ -41,8 +43,8 @@ public final class Constants {
         public static final int     LEFT_MOTOR_CAN_ID             = 4;
         public static final int     RIGHT_MOTOR_CAN_ID            = 2;
 
-        public static final boolean LEFT_MOTOR_INVERTED           = false;
-        public static final boolean RIGHT_MOTOR_INVERTED          = true;
+        public static final boolean LEFT_MOTOR_INVERTED           = true;
+        public static final boolean RIGHT_MOTOR_INVERTED          = false;
 
         public static final double  ENCODER_COUNTS_PER_REVOLUTION = 8.46;
         public static final double  ROBOT_WHEEL_DIAMETER_CM       = 15.24;
@@ -77,6 +79,14 @@ public final class Constants {
         public static final double ReefHeightMeters            = 0.308;
         public static final double ProcessorHeightMeters       = 1.301;
         public static final double BargeHeightMeters           = 1.868;
+
+    }
+
+    public static final class ShooterConstants {
+        ;
+        public static final double LOW_RANGE_SHOOTER_SPEED    = 50.0;
+        public static final double MEDIUM_RANGE_SHOOTER_SPEED = 50.0;
+        public static final double LONG_RANGE_SHOOTER_SPEED   = 50.0;
 
     }
 }
