@@ -76,15 +76,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public double getCBSpeed() {
         return Math.round(leftShooterEncoder.getVelocity());
-        return Math.round(leftShooterEncoder.getVelocity());
     }
 
     public void setCBSpeed(double CBSpeed) {
         conveyorBelt.set(CBSpeed);
-    }
-
-    public double getCBSpeed() {
-        return Math.round(leftShooterEncoder.getVelocity());
     }
 
     /*
