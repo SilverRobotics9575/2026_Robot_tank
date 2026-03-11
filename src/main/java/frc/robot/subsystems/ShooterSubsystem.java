@@ -78,9 +78,6 @@ public class ShooterSubsystem extends SubsystemBase {
         return Math.round(leftShooterEncoder.getVelocity());
     }
 
-    public void setCBSpeed(double CBSpeed) {
-        conveyorBelt.set(CBSpeed);
-    }
 
     /*
      * Kicker Motor routines
