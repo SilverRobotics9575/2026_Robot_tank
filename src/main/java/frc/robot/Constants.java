@@ -84,9 +84,9 @@ public final class Constants {
 
     public static final class ShooterConstants {
         ;
-        public static final double LOW_RANGE_SHOOTER_SPEED    = 50.0;
-        public static final double MEDIUM_RANGE_SHOOTER_SPEED = 50.0;
-        public static final double LONG_RANGE_SHOOTER_SPEED   = 50.0;
+        public static final double LOW_RANGE_SHOOTER_SPEED    = 0.1;
+        public static final double MEDIUM_RANGE_SHOOTER_SPEED = 0.1;
+        public static final double LONG_RANGE_SHOOTER_SPEED   = 0.1;
 
     }
 }
