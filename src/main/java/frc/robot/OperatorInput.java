@@ -186,5 +186,20 @@ public class OperatorInput extends SubsystemBase {
         return shooterController.getLeftBumperButton();
     }
 
+    public boolean getLongRangeShooterSpeed() {
+        return shooterController.getPOV() == 180; // If the DPad is pressed down
+    }
 
+    public boolean getMediumRangeShooterSpeed() {
+        return shooterController.getPOV() == 90; // If the DPad is pressed to the right
+    }
+
+    public boolean getShortRangeShooterSpeed() {
+        return shooterController.getPOV() == 0; // If the DPad is pressed up. DPad not being pressed will return -1, not 0.
+    }
+
+    public boolean getShooterMode() {
+        return shooterController.getAButtonPressed(); // Does not handle logic for the switch.
+        // Uses getAButtonPressed() over getAButton() because we need it to only be the inital press.
+    }
 }

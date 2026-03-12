@@ -1,5 +1,6 @@
 package frc.robot.commands.shooter;
 
+import frc.robot.Constants;
 import frc.robot.OperatorInput;
 import frc.robot.commands.LoggingCommand;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -25,13 +26,34 @@ public class DefaultShooterCommand extends LoggingCommand {
     public void execute() {
 
         // Set the shooter speed based on the left trigger
-        if (operatorInput.getCBSpeedReverse()) {
-            shooterSubsystem.setCBSpeed(-operatorInput.getCBSpeed());
+        boolean toggleMode = false; // False is variable shooter mode, true is toggle
+
+        if (operatorInput.getShooterMode()) { // If the inital press of the button is detected, invert the state of toggle mode
+                                              // (switch from Variable to Toggle or vice versa)
+            toggleMode = !toggleMode; // Flip value
         }
-        else {
-            shooterSubsystem.setCBSpeed(operatorInput.getCBSpeed());
+        if (toggleMode) { // If the mode is the "toggle mode", where it goes to preset speeds, we check for the preset speeds.
+
+            // TODO: SET RANGES
+            if (operatorInput.getShortRangeShooterSpeed()) {
+                shooterSubsystem.setShooterSpeed(Constants.ShooterConstants.LOW_RANGE_SHOOTER_SPEED);
+            }
+            else if (operatorInput.getMediumRangeShooterSpeed()) {
+                shooterSubsystem.setShooterSpeed(Constants.ShooterConstants.MEDIUM_RANGE_SHOOTER_SPEED);
+            }
+            else if (operatorInput.getLongRangeShooterSpeed()) {
+                shooterSubsystem.setShooterSpeed(Constants.ShooterConstants.LONG_RANGE_SHOOTER_SPEED);
+            }
         }
-        shooterSubsystem.setShooterSpeed(operatorInput.getShooterSpeed());
+        else { // If the mode is the "variable mode", we check the trigger inputs for the variable speed.
+            if (operatorInput.getCBSpeedReverse()) {
+                shooterSubsystem.setCBSpeed(-operatorInput.getCBSpeed());
+            }
+            else {
+                shooterSubsystem.setCBSpeed(operatorInput.getCBSpeed());
+            }
+            shooterSubsystem.setShooterSpeed(operatorInput.getShooterSpeed());
+        }
     }
 
     @Override
