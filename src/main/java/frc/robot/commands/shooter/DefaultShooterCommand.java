@@ -26,16 +26,12 @@ public class DefaultShooterCommand extends LoggingCommand {
     public void execute() {
 
         // Set the shooter speed based on the left trigger
-        boolean toggleMode = false; // False is variable shooter mode, true is toggle
 
-        if (operatorInput.getShooterMode()) { // If the inital press of the button is detected, invert the state of toggle mode
-                                              // (switch from Variable to Toggle or vice versa)
-            toggleMode = !toggleMode; // Flip value
-        }
-        if (toggleMode) { // If the mode is the "toggle mode", where it goes to preset speeds, we check for the preset speeds.
-
+        if (operatorInput.getShooterMode()) { // If the mode is the "toggle mode", where it goes to preset speeds, we check for
+                                              // the preset speeds.
             // TODO: SET RANGES
             if (operatorInput.getShortRangeShooterSpeed()) {
+                System.out.println("Short Range");
                 shooterSubsystem.setShooterSpeed(Constants.ShooterConstants.LOW_RANGE_SHOOTER_SPEED);
             }
             else if (operatorInput.getMediumRangeShooterSpeed()) {

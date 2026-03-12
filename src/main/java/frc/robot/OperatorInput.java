@@ -199,7 +199,7 @@ public class OperatorInput extends SubsystemBase {
     }
 
     public boolean getShooterMode() {
-        return shooterController.getAButtonPressed(); // Does not handle logic for the switch.
+        return shooterController.getAButton(); // Does not handle logic for the switch.
         // Uses getAButtonPressed() over getAButton() because we need it to only be the inital press.
     }
 }
