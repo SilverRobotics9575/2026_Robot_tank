@@ -21,9 +21,9 @@ public final class Constants {
     public static final class OperatorInputConstants {
 
         public static final int    DRIVER_CONTROLLER_PORT      = 0;
-        public static final double DRIVER_CONTROLLER_DEADBAND  = .2;
+        public static final double DRIVER_CONTROLLER_DEADBAND  = .25;
         public static final int    SHOOTER_CONTROLLER_PORT     = 1;
-        public static final double SHOOTER_CONTROLLER_DEADBAND = .2;
+        public static final double SHOOTER_CONTROLLER_DEADBAND = .25;
     }
 
     public static final class AutoConstants {
@@ -83,18 +83,27 @@ public final class Constants {
     }
 
     public static final class ShooterConstants {
-        ;
         public static final double LOW_RANGE_SHOOTER_SPEED    = -0.4;
         public static final double MEDIUM_RANGE_SHOOTER_SPEED = -0.6;
         public static final double LONG_RANGE_SHOOTER_SPEED   = -0.8;
 
-        public static final int    LEFT_SHOOTER_CAN_ID        = 6;
-        public static final int    RIGHT_SHOOTER_CAN_ID       = 7;
+        public static final int    LEFT_SHOOTER_CAN_ID        = 7;
+        public static final int    RIGHT_SHOOTER_CAN_ID       = 6;
         public static final int    CONVEYOR_BELT_CAN_ID       = 10;
 
         public static final double CONVEYOR_BELT_AUTO_SPEED   = -0.1;
         public static final double SHOOTER_AUTO_SPEED         = -0.7;
 
+    }
+
+    public static final class IntakeConstants {
+
+        public static final int    INTAKE_CAN_ID          = 13;
+        public static final int    RETRACTOR_CAN_ID       = 14;
+
+        public static final double INTAKE_SPEED           = 0.6;
+
+        public static final double INTAKE_RETRACTOR_SPEED = .5;
     }
 
     public static final class DRIVE_AUTO {

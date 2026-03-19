@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.AutoConstants.AutoPattern;
 import frc.robot.Constants.DriveConstants.DriveMode;
+import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.OperatorInputConstants;
 import frc.robot.commands.CancelCommand;
 import frc.robot.commands.GameController;
-import frc.robot.commands.shooter.IntakeCommand;
+import frc.robot.commands.shooter.ShootCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -48,7 +50,7 @@ public class OperatorInput extends SubsystemBase {
         autoPatternChooser.addOption("Box", AutoPattern.BOX);
         autoPatternChooser.addOption("Path Test", AutoPattern.PATH_TEST_THING);
         autoPatternChooser.addOption("Actual Auto", AutoPattern.DRIVE_FORWARD_AND_OUTAKE_L1);
-        autoPatternChooser.addOption("Peter Grif", AutoPattern.PETER_GRIFFIN);
+        autoPatternChooser.addOption("Peter Griffin", AutoPattern.PETER_GRIFFIN);
         autoPatternChooser.addOption("MIBOMBO", AutoPattern.MIBOMBO);
 
 
@@ -74,14 +76,16 @@ public class OperatorInput extends SubsystemBase {
      *
      * @param driveSubsystem
      */
-    public void configureButtonBindings(DriveSubsystem driveSubsystem, ShooterSubsystem shooterSubsystem) {
+
+    public void configureButtonBindings(DriveSubsystem driveSubsystem, ShooterSubsystem shooterSubsystem,
+        IntakeSubsystem intakeSubsystem) {
 
         // Cancel Command - cancels all running commands on all subsystems
         new Trigger(() -> isCancel())
-            .onTrue(new CancelCommand(this, driveSubsystem));
+            .onTrue(new CancelCommand(this, driveSubsystem, shooterSubsystem, intakeSubsystem));
 
         new Trigger(() -> driverController.getYButton())
-            .onTrue(new IntakeCommand(this, shooterSubsystem));
+            .onTrue(new ShootCommand(this, shooterSubsystem));
     }
 
     /*
@@ -179,6 +183,21 @@ public class OperatorInput extends SubsystemBase {
 
     public double getShooterSpeed() {
         return -shooterController.getRightY();
+    }
+
+    public double getIntakeRollerSpeed() {
+        return shooterController.getLeftY();
+    }
+
+    public double getIntakeRetractorSpeed() {
+
+        if (shooterController.getPOV() == 0) {
+            return -IntakeConstants.INTAKE_RETRACTOR_SPEED;
+        }
+        else if (shooterController.getPOV() == 180) {
+            return IntakeConstants.INTAKE_RETRACTOR_SPEED;
+        }
+        return 0;
     }
 
     public double getCBSpeed() {

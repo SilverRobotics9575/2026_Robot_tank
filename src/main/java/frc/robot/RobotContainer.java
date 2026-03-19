@@ -7,8 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.auto.AutoCommand;
 import frc.robot.commands.drive.DefaultDriveCommand;
+import frc.robot.commands.intake.DefaultIntakeCommand;
 import frc.robot.commands.shooter.DefaultShooterCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LightsSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
@@ -32,6 +34,7 @@ public class RobotContainer {
     private final VisionSubsystem  visionSubsystem  = new VisionSubsystem(lightsSubsystem);
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
     private final OperatorInput    operatorInput    = new OperatorInput();
+    private final IntakeSubsystem  intakeSubsystem  = new IntakeSubsystem();
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -46,11 +49,15 @@ public class RobotContainer {
         shooterSubsystem.setDefaultCommand(
             new DefaultShooterCommand(operatorInput, shooterSubsystem));
 
+        intakeSubsystem.setDefaultCommand(
+            new DefaultIntakeCommand(operatorInput, intakeSubsystem));
+
         // visionSubsystem.setDefaultCommand(
         // new DefaultVisionCommand(driveSubsystem, visionSubsystem));
 
         // Configure the button bindings - pass in all subsystems
-        operatorInput.configureButtonBindings(driveSubsystem, shooterSubsystem);
+        operatorInput.configureButtonBindings(driveSubsystem, shooterSubsystem, intakeSubsystem);
+
 
     }
 

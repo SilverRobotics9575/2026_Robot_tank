@@ -4,12 +4,12 @@ import frc.robot.OperatorInput;
 import frc.robot.commands.LoggingCommand;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class IntakeCommand extends LoggingCommand {
+public class ShootCommand extends LoggingCommand {
 
     private final OperatorInput    operatorInput;
     private final ShooterSubsystem shooterSubsystem;
 
-    public IntakeCommand(OperatorInput operatorInput, ShooterSubsystem shooterSubsystem) {
+    public ShootCommand(OperatorInput operatorInput, ShooterSubsystem shooterSubsystem) {
         this.operatorInput    = operatorInput;
         this.shooterSubsystem = shooterSubsystem;
 

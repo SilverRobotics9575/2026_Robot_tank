@@ -110,6 +110,9 @@ public class AutoCommand extends SequentialCommandGroup {
             addCommands(new DriveOnHeadingCommand(0, -0.1, 225, true, driveSubsystem));
             addCommands(new ShooterAutoCommand(ShooterConstants.SHOOTER_AUTO_SPEED, 5.0,
                 ShooterConstants.CONVEYOR_BELT_AUTO_SPEED, false, shooterSubsystem));
+            addCommands(new WaitCommand(10));
+            addCommands(new ShooterAutoCommand(ShooterConstants.SHOOTER_AUTO_SPEED, 5.0,
+                -ShooterConstants.CONVEYOR_BELT_AUTO_SPEED, false, shooterSubsystem));
             addCommands(new WaitCommand(15));
             addCommands(new ShooterAutoCommand(0, 1, 0, shooterSubsystem));
 
