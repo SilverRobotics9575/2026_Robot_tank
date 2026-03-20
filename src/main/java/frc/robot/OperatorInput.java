@@ -186,6 +186,12 @@ public class OperatorInput extends SubsystemBase {
     }
 
     public double getIntakeRollerSpeed() {
+        if (shooterController.getBButton()) {
+            return 0.65;
+        }
+        if (shooterController.getYButton()) {
+            return 0.7;
+        }
         return shooterController.getLeftY();
     }
 

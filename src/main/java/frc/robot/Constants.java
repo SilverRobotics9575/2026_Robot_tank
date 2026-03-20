@@ -104,6 +104,8 @@ public final class Constants {
         public static final double INTAKE_SPEED           = 0.6;
 
         public static final double INTAKE_RETRACTOR_SPEED = .5;
+
+        public static final double INTAKE_LOWER_LIMIT     = -2260;
     }
 
     public static final class DRIVE_AUTO {

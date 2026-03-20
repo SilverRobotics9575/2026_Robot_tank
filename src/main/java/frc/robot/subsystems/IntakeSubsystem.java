@@ -61,16 +61,27 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
 
-    public double getRetractorSpeed() {
-        return Math.round(retractorEncoder.getVelocity());
+    public boolean isIntakeDeployed() {
+    	return getRetractorPosition() < 0;
     }
 
+    /** 
+     * Get retractor position in degrees from the ground
+     * fully retracted, the retractor position is 90 deg,
+     * fully deployed, the retractor position is less than zero
+     * 
+     * @return angle relative to the ground where parallel to the 
+     * ground is zero and fully deployed is less than zero.
+     */
+    public double getRetractorPosition() {
+    	return retractorEncoder.getPosition();
+    }
 
     @Override
     public void periodic() {
 
-        SmartDashboard.putNumber("Intake Motor Speed: ", getIntakeSpeed());
-        SmartDashboard.putNumber("Retractor Motor Speed: ", getRetractorSpeed());
+        SmartDashboard.putNumber("Intake Motor Speed", getIntakeSpeed());
+        SmartDashboard.putNumber("Retractor Position", getRetractorPosition());
     }
 
     @Override
@@ -80,7 +91,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
         sb.append(this.getClass().getSimpleName()).append(" : ")
             .append("Intake Speed ").append(getIntakeSpeed())
-            .append(" Retractor Speed ").append(getRetractorSpeed());
+            .append(" Retractor Position ").append(getRetractorPosition());
 
         return sb.toString();
     }
